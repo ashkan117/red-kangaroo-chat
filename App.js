@@ -1,20 +1,48 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import Chat from "./Chat"
+
 
 export default function App() {
+  const [userId, setUser] = useState(0);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.root}>
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <Button title='Me'
+            onPress={(_e) => setUser(0)}
+          />
+          <Button title='Other'
+            onPress={(_e) => setUser(1)}
+          />
+        </View>
+        <Chat userId={userId} />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    backgroundColor: 'yellow',
+    justifyContent: 'space-around'
+  },
+  container: {
+    display: 'flex',
+    backgroundColor: 'green',
+    height: '100%'
+
+  },
+  chat: {
+    width: '100%',
+    backgroundColor: 'red'
   },
 });
